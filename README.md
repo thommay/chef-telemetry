@@ -19,7 +19,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+require 'telemetry'
+payload = { "event" => "command-line", "properties" => { "action" => "test", "platform" => "windows-10-x64", "version" => "1.16" } }
+tel = Telemetry.new { |p| p.product = "chefdk"; p.origin = "command-line" }
+tel.send payload
 
 ## Development
 
