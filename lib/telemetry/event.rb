@@ -15,12 +15,12 @@ class Telemetry
       "type" =>  "track",
     }
 
-    def format(event)
+    def prepare(event)
       body = SKELETON.dup
       ts = Time.now.utc.strftime("%FT%TZ")
       event["properties"]["timestamp"] = ts
       body.tap do |c|
-        c["session_id"] = @session
+        c["session_id"] = @session.id
         c["origin"] = @origin
         c["product"] = @product
         c["timestamp"] = ts

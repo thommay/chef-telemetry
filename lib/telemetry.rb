@@ -12,7 +12,7 @@ class Telemetry
               else
                 Client.new(endpoint)
               end
-    @session = Session.id
+    @session = Session.new
     @event = Event.new(product, session, origin)
   end
 
@@ -71,8 +71,8 @@ class Telemetry
 
   def send(data = {})
     return if opted_out?
-    payload = event.format(data)
-    client.await.fire(payload)
+    payload = event.prepare(data)
+    client.async.fire(payload)
   end
 
   def endpoint
