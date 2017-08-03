@@ -5,10 +5,9 @@ require "telemetry/session"
 require "telemetry/version"
 
 class Telemetry
-  def initialize(product: nil, origin: "command-line", &block)
+  def initialize(product: nil, origin: "command-line")
     @product = product
     @origin = origin
-    yield self if block_given?
     @client = if opted_out?
                 NoOp.new
               else
