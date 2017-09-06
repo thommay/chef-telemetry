@@ -1,5 +1,6 @@
 require "http"
 require "concurrent"
+require "pp"
 
 class Telemetry
   class Client
@@ -12,6 +13,7 @@ class Telemetry
     end
 
     def fire(event)
+      pp event
       http.post("/events", json: event).flush
     end
   end
